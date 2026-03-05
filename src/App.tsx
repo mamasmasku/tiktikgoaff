@@ -816,11 +816,42 @@ ${INDONESIAN_CONTEXT_RULE}
 - DILARANG mengubah kata-kata dari skrip asli. Hanya boleh memotong di jeda natural.
 
 **ATURAN VISUAL PER ADEGAN:**
-- Dominasi wide shot dan medium shot. Close-up produk MAKSIMAL 1 kali per segmen.
-- Urutan shot yang disarankan: wide → medium → medium → close-up (1x) → medium → wide → medium → medium.
+- Dominasi wide shot dan medium shot — minimal 5 dari 8 adegan harus wide atau medium.
+- Close-up MAKSIMAL 1 kali per segmen, hanya untuk detail paling impactful.
+- Wide shot WAJIB memperlihatkan objek review SEKALIGUS suasana/lingkungan sekitarnya —
+  contoh: "wide shot meja makan dengan hidangan lengkap, suasana outlet ramai di latar belakang"
+- Medium shot juga harus memperlihatkan konteks tempat —
+  contoh: "medium shot ayam geprek di piring dengan meja kayu dan dekorasi warung terlihat di sekitarnya"
+- DILARANG close-up yang memotong konteks tempat/suasana dari frame.
+
+UNTUK REVIEW MAKANAN/MINUMAN:
+Visual off-screen prioritaskan: wide shot suasana outlet dengan meja dan pengunjung, medium shot
+hidangan di atas meja dengan dekorasi tempat terlihat, medium shot proses penyajian dengan dapur/counter
+terlihat di latar, wide shot interior outlet yang nyaman dan menarik.
+
+UNTUK REVIEW HOTEL:
+Visual off-screen prioritaskan: wide shot interior kamar dengan pencahayaan hangat dan seluruh ruangan
+terlihat, medium shot area fasilitas (kolam, lobby) dengan suasana keseluruhan terlihat, wide shot
+eksterior hotel, medium shot detail amenities dalam konteks ruangan.
+
+UNTUK REVIEW TEMPAT WISATA:
+Visual off-screen prioritaskan: wide shot panorama lokasi dengan landmark dan pengunjung terlihat,
+medium shot spot ikonik dengan suasana sekitar terlihat, wide shot area berbeda yang menarik,
+medium shot aktivitas/keunikan tempat dalam konteks lingkungan.
+
+URUTAN SHOT YANG DISARANKAN per segmen (8 adegan):
+wide shot suasana tempat lengkap → medium shot produk dengan latar terlihat →
+medium shot sudut berbeda → wide shot area menarik lainnya →
+medium shot detail dengan konteks → close-up impactful (1x) →
+medium shot suasana → wide shot penutup keseluruhan.
+
+PRINSIP UTAMA: Visual harus menjawab "terlihat seperti apa tempatnya?" — penonton
+harus bisa membayangkan suasana berada di sana, bukan hanya melihat produk terisolasi.
+
 - Adegan on-screen karakter: deskripsikan ekspresi, gestur, dan posisi karakter secara spesifik.
-- Adegan off-screen (VO): deskripsikan visual produk/tempat/suasana yang mendukung kata-kata dialog.
-- Deskripsi visual harus sinematik dan spesifik — contoh: "medium shot nasi goreng mengepul di wajan besi hitam, asap tipis mengular ke atas".
+- Adegan off-screen (VO): WAJIB deskripsikan visual tempat/produk dengan konteks suasana — 
+  BUKAN hanya produk sendirian.
+- DILARANG adegan off-screen diisi deskripsi karakter dalam bentuk apapun.
 `;
 
     const systemInstruction =
