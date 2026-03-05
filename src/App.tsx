@@ -46,8 +46,8 @@ const countDialogWords = (segmentText: string): number => {
 
 const validateDialogLength = (promptText: string, segDuration: string, isUrai = false): string[] => {
   const maxWords = isUrai
-    ? (segDuration === '10' ? 40 : 60)
-    : (segDuration === '10' ? 25 : 37);
+    ? (segDuration === '10' ? 35 : 48)
+    : (segDuration === '10' ? 32 : 45);
   const segments = promptText.split(/(?=▶ SEGMEN)/).filter(s => s.trim().startsWith('▶ SEGMEN'));
   return segments
     .map((seg, i) => {
@@ -60,8 +60,8 @@ const validateDialogLength = (promptText: string, segDuration: string, isUrai = 
 
 const getSegmentWordCounts = (promptText: string, segDuration: string, isUrai = false): { count: number; max: number }[] => {
   const maxWords = isUrai
-    ? (segDuration === '10' ? 40 : 60)
-    : (segDuration === '10' ? 25 : 37);
+    ? (segDuration === '10' ? 35 : 48)
+    : (segDuration === '10' ? 32 : 45);
   const segments = promptText.split(/(?=▶ SEGMEN)/).filter(s => s.trim().startsWith('▶ SEGMEN'));
   return segments.map(seg => ({ count: countDialogWords(seg), max: maxWords }));
 };
@@ -519,7 +519,7 @@ setSkripJualanOutput(data.text || '');
 
     const isUraiMode = promptMode === 'urai';
     const totalScenes = isUraiMode ? (segmentDuration === '10' ? 5 : 8) : (segmentDuration === '10' ? 5 : 7);
-    const maxWords = isUraiMode ? (segmentDuration === '10' ? 40 : 60) : (segmentDuration === '10' ? 25 : 37);
+    const maxWords = isUraiMode ? (segmentDuration === '10' ? 35 : 48) : (segmentDuration === '10' ? 32 : 45);
 
     const characterRule = buildCharacterRule(characterAppearance, totalScenes);
     const dialogRule = buildDialogRule(dialogStrategy, characterAppearance, segmentDuration, maxWords, totalScenes);
