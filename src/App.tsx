@@ -856,10 +856,6 @@ ${stylePerContent}
 `;
 
     try {
-      const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
-      const toolsConfig = promptMode === 'urai' ? undefined : [{ googleSearch: {} }];
-
-      // @ts-ignore
 const response = await fetch('/api/generate', {
   method: 'POST',
   headers: { 'Content-Type': 'application/json' },
