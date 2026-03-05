@@ -47,7 +47,7 @@ const countDialogWords = (segmentText: string): number => {
 const validateDialogLength = (promptText: string, segDuration: string, isUrai = false): string[] => {
   const maxWords = isUrai
     ? (segDuration === '10' ? 35 : 48)
-    : (segDuration === '10' ? 32 : 45);
+    : (segDuration === '10' ? 28 : 40);
   const segments = promptText.split(/(?=▶ SEGMEN)/).filter(s => s.trim().startsWith('▶ SEGMEN'));
   return segments
     .map((seg, i) => {
@@ -61,7 +61,7 @@ const validateDialogLength = (promptText: string, segDuration: string, isUrai = 
 const getSegmentWordCounts = (promptText: string, segDuration: string, isUrai = false): { count: number; max: number }[] => {
   const maxWords = isUrai
     ? (segDuration === '10' ? 35 : 48)
-    : (segDuration === '10' ? 32 : 45);
+    : (segDuration === '10' ? 28 : 40);
   const segments = promptText.split(/(?=▶ SEGMEN)/).filter(s => s.trim().startsWith('▶ SEGMEN'));
   return segments.map(seg => ({ count: countDialogWords(seg), max: maxWords }));
 };
@@ -279,7 +279,6 @@ VISUAL: Shot yang clean dan terorganisir — setiap adegan visual merepresentasi
 
 const INDONESIAN_CONTEXT_RULE = `**ATURAN KONTEKS VISUAL INDONESIA — WAJIB DITERAPKAN DI SEMUA ADEGAN:**
 
-Semua elemen visual HARUS spesifik Indonesia. Jangan biarkan Sora menggunakan default Western.
 Setiap kali elemen di bawah muncul dalam deskripsi visual, WAJIB tambahkan kata kunci spesifik berikut:
 
 UANG / TRANSAKSI:
@@ -288,39 +287,17 @@ UANG / TRANSAKSI:
 - Contoh BENAR: "tangan memegang lembaran uang Rupiah Indonesia pecahan 100 ribu berwarna merah"
 - Contoh SALAH: "tangan memegang uang"
 
-MAKANAN & MINUMAN:
-- Selalu sebut nama makanan Indonesia secara eksplisit: "nasi goreng dengan telur ceplok di atas", "ayam geprek sambal merah", "es teh manis gelas plastik bening"
-- Tambahkan: "piring putih khas warung Indonesia", "meja kayu warung makan Indonesia", "wadah styrofoam khas Indonesia"
-- Tambahkan detail visual lokal: "nasi pulen mengepul", "sambal merah di mangkok kecil", "kerupuk di sisi piring"
-
-TEMPAT / SETTING:
-- Untuk brand/tempat LOKAL Indonesia: tambahkan "suasana warung makan Indonesia", "interior kafe Indonesia modern"
-- Untuk hotel lokal: "lobby hotel bintang Indonesia", "kamar hotel Indonesia dengan AC split di dinding"
-- Untuk wisata: "pemandangan alam Indonesia tropis", "pantai Indonesia dengan pohon kelapa"
-- PENGECUALIAN — brand internasional seperti KFC, McDonald's, Starbucks, Pizza Hut, dan sejenisnya: JANGAN tambahkan kata "Indonesia". Gunakan visual identity brand tersebut apa adanya (interior, warna, logo sesuai standar brand). Cukup pastikan pengunjung/figuran di latar terlihat seperti orang Asia Tenggara.
-
 ORANG / LATAR / FIGURAN:
 - Untuk orang di LATAR atau figuran (bukan karakter utama): tambahkan "pengunjung berkulit sawo matang", "orang Indonesia"
 - JANGAN ubah atau tambahkan deskripsi fisik pada karakter utama — karakter utama sudah ditentukan oleh input user, gunakan persis seperti yang diberikan
 - Contoh BENAR untuk figuran: "wide shot suasana kafe, pengunjung Indonesia berkulit sawo matang"
 - Contoh SALAH: menambahkan "berkulit sawo matang" atau detail fisik apapun pada karakter utama
 
-TEKS / TULISAN DI FRAME:
-- Jika ada papan nama, menu, atau tulisan di visual: tambahkan "bertuliskan huruf Latin bahasa Indonesia"
-- Contoh: "papan menu bertuliskan bahasa Indonesia", "struk kasir bertuliskan Rupiah"
-
-KEMASAN / PRODUK:
-- Untuk produk lokal: tambahkan "kemasan produk Indonesia", "label berbahasa Indonesia"
-- PENGECUALIAN — kemasan brand internasional (KFC, Starbucks, dll): gunakan kemasan asli brand tersebut, jangan dimodifikasi dengan label Indonesia
-
 CARA MENERAPKAN — WAJIB:
 Setiap deskripsi visual adegan yang melibatkan elemen di atas, sisipkan kata kunci Indonesia secara langsung dalam kalimat deskripsi.
 Contoh penerapan lengkap:
 - SALAH: "close-up tangan memegang uang, tersenyum ke kamera"
-- BENAR: "close-up tangan memegang lembaran Rupiah Indonesia pecahan 100 ribu warna merah, tersenyum ke kamera"
-
-- SALAH: "wide shot suasana restoran mewah, pengunjung ramai"  
-- BENAR: "wide shot suasana restoran Indonesia modern, pengunjung berkulit sawo matang berpakaian kasual, dekorasi batik di dinding"`;
+- BENAR: "close-up tangan memegang lembaran Rupiah Indonesia pecahan 100 ribu warna merah, tersenyum ke kamera"`;
 
 export default function App() {
   const [prompts, setPrompts] = useState<string[]>([]);
@@ -519,7 +496,7 @@ setSkripJualanOutput(data.text || '');
 
     const isUraiMode = promptMode === 'urai';
     const totalScenes = isUraiMode ? (segmentDuration === '10' ? 5 : 8) : (segmentDuration === '10' ? 5 : 7);
-    const maxWords = isUraiMode ? (segmentDuration === '10' ? 35 : 48) : (segmentDuration === '10' ? 32 : 45);
+    const maxWords = isUraiMode ? (segmentDuration === '10' ? 35 : 48) : (segmentDuration === '10' ? 28 : 40);
 
     const characterRule = buildCharacterRule(characterAppearance, totalScenes);
     const dialogRule = buildDialogRule(dialogStrategy, characterAppearance, segmentDuration, maxWords, totalScenes);
