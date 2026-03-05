@@ -710,7 +710,6 @@ ${INDONESIAN_CONTEXT_RULE}
 - DILARANG penjelasan/komentar apapun sebelum atau sesudah output. Langsung mulai dengan '▶ SEGMEN 1'.
 - DILARANG menuliskan kata "Karakter" sebelum nama/handle karakter. Langsung tulis nama/handle-nya.
 - Jika membuat lebih dari 1 konten: SETIAP konten WAJIB menggunakan gaya berbeda sesuai distribusi. Hook dan struktur narasi HARUS berbeda antar konten — tidak boleh copy-paste struktur dari konten sebelumnya.
-- // ✅ VERSI LENGKAP — tempel ini menggantikan baris ATURAN VISUAL yang lama
 - ATURAN VISUAL — WAJIB FOKUS KE OBJEK REVIEW:
   Mayoritas adegan (minimal 5 dari 7 adegan per segmen) HARUS menampilkan visual objek review, bukan karakter.
   Karakter hanya muncul di adegan on-screen yang sudah ditentukan — adegan lainnya WAJIB fokus ke visual produk/tempat.
