@@ -188,6 +188,12 @@ KOMPOSISI SHOT — ATURAN KETAT:
 - Close-up MAKSIMAL 1 kali per segmen, hanya untuk detail paling impactful
 - DILARANG close-up yang memotong konteks dari frame
 - DILARANG adegan off-screen diisi deskripsi karakter dalam bentuk apapun
+LARANGAN VISUAL PLATFORM LAIN — WAJIB:
+- DILARANG menampilkan layar HP yang menunjukkan aplikasi order atau belanja apapun
+- DILARANG menampilkan UI aplikasi, notifikasi order, atau struk digital dari platform lain
+- DILARANG visual tangan mengetuk layar HP yang menampilkan platform lain
+- Jika perlu menunjukkan "cara beli/order", gunakan: karakter menunjuk ke bawah frame, gestur tangan natural, atau karakter bicara langsung ke kamera — TANPA memperlihatkan layar HP
+- Jika perlu menunjukkan produk secara digital, gunakan: kemasan fisik produk, produk di tangan, atau visual produk di meja/display — TANPA layar HP
 
 FORMAT SORA:
 ▶ SEGMEN [N] (${soraSegmentDuration} detik)
