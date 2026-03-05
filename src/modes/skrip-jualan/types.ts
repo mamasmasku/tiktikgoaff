@@ -1,3 +1,5 @@
+export type ProductDisplayType = 'dipegang' | 'dikenakan' | 'digunakan' | 'ditunjuk';
+
 export interface SkripJualanConfig {
   namaProduk: string;
   durasiSkrip: string;
@@ -12,6 +14,7 @@ export interface SkripJualanConfig {
   soraSegmentDuration: string;
   soraCharacterAppearance: string;
   soraDialogStrategy: string;
+  productDisplayType: ProductDisplayType;
 }
 
 export interface ParsedSkrip {
