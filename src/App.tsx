@@ -669,11 +669,14 @@ RUMUS ALUR NARASI (pilih salah satu sesuai gaya konten):
 - Cinematic: Kalimat pendek puitis → detail sensorik kuat → keistimewaan → CTA elegan
 
 TAHAP 3 — BAGI SKRIP KE SEGMEN & ADEGAN (SEPERTI SUTRADARA)
-- Hitung segmen: Total Durasi ÷ Durasi per Segmen
+- Hitung segmen WAJIB: Total Durasi ÷ Durasi per Segmen
+  Contoh: 30 detik ÷ 15 detik = 2 segmen → WAJIB buat 2 segmen terpisah
+  Contoh: 45 detik ÷ 15 detik = 3 segmen → WAJIB buat 3 segmen terpisah
+- SETIAP segmen maksimal ${maxWords} kata dialog — DILARANG melebihi batas ini
+- DILARANG menggabungkan semua dialog ke 1 segmen meskipun skrip terasa menyatu
 - Potong skrip ke segmen di jeda natural (koma, titik, jeda napas) — JANGAN potong tengah kalimat
-- Distribusikan kalimat ke adegan: setiap adegan berisi 1-2 kalimat pendek (~2 detik ucapan)
-- JANGAN tulis ulang atau perpendek kalimat dari skrip — bagi apa adanya
-- Rancang visual sinematik yang mendukung tiap adegan sesuai panduan visual di bawah
+- Setiap segmen harus berdiri sendiri sebagai video Sora yang terpisah
+- CEK WAJIB sebelum output: jumlah segmen = Total Durasi ÷ Durasi per Segmen — harus sama persis
 
 TAHAP 4 — FORMAT OUTPUT
 LANGSUNG mulai output dengan ▶ SEGMEN 1 tanpa penjelasan, tanpa intro, tanpa komentar apapun.
