@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { STORYTELLING_RUMUS } from '../banks/storytellingBank';
 import { CTA_CATEGORIES, DEFAULT_CTA_CATEGORY_ID } from '../banks/ctaBank';
-import { SkripJualanConfig } from '../types';
+import { SkripJualanConfig, ProductDisplayType } from '../types';
 
 const characterAppearanceOptions = [
   { id: 'adegan-1-2', label: 'Adegan 1 & 2', description: 'Karakter on-screen di 2 adegan pertama tiap segmen' },
@@ -14,6 +14,33 @@ const characterAppearanceOptions = [
 const dialogStrategyOptions = [
   { id: 'voice-over-penuh', label: 'Voice Over Penuh', description: 'Narasi berjalan di semua adegan sepanjang video' },
   { id: 'hanya-on-screen', label: 'Dialog Hanya Saat On-Screen', description: 'Dialog hanya ada saat karakter muncul di layar' },
+];
+
+const productDisplayOptions: { id: ProductDisplayType; emoji: string; label: string; description: string }[] = [
+  {
+    id: 'dipegang',
+    emoji: '✋',
+    label: 'Dipegang',
+    description: 'Produk dipegang ke kamera — makanan, minuman, skincare, gadget, botol, kemasan',
+  },
+  {
+    id: 'dikenakan',
+    emoji: '👗',
+    label: 'Dikenakan / Dipakai',
+    description: 'Produk dipakai langsung di badan — baju, sepatu, aksesoris, hijab, jam tangan',
+  },
+  {
+    id: 'digunakan',
+    emoji: '🔧',
+    label: 'Sedang Digunakan',
+    description: 'Produk dipakai dalam aksi nyata — alat masak, peralatan rumah, tools, alat kecantikan',
+  },
+  {
+    id: 'ditunjuk',
+    emoji: '👆',
+    label: 'Ditunjuk / Dipamerkan',
+    description: 'Produk ditampilkan tanpa dipegang — display toko, produk besar, produk di meja/rak',
+  },
 ];
 
 const TONE_PRESETS = ['Santai', 'Serius', 'Emosional', 'Inspiratif', 'Humoris', 'Informatif'];
@@ -32,6 +59,7 @@ export default function SkripJualanForm({ onGenerate, isLoading }: Props) {
   const [manualHook, setManualHook] = useState('');
   const [selectedRumus, setSelectedRumus] = useState<string[]>([]);
   const [selectedCTACategory, setSelectedCTACategory] = useState(DEFAULT_CTA_CATEGORY_ID);
+  const [productDisplayType, setProductDisplayType] = useState<ProductDisplayType>('dipegang');
   const [soraEnabled, setSoraEnabled] = useState(false);
   const [soraCharacter, setSoraCharacter] = useState('');
   const [soraSegmentDuration, setSoraSegmentDuration] = useState('15');
@@ -57,6 +85,7 @@ export default function SkripJualanForm({ onGenerate, isLoading }: Props) {
       manualHook: manualHook.trim(),
       selectedRumus,
       selectedCTACategory,
+      productDisplayType,
       soraEnabled,
       soraCharacter: soraCharacter.trim(),
       soraSegmentDuration,
@@ -159,6 +188,37 @@ export default function SkripJualanForm({ onGenerate, isLoading }: Props) {
           {manualHook.trim() && (
             <p className="text-xs text-yellow-400">⚡ Hook manual aktif — bank hook tidak akan digunakan</p>
           )}
+        </div>
+      </div>
+
+      {/* ── Cara Tampil Produk ── */}
+      <div className="flex flex-col gap-4 p-6 bg-gray-800/50 border border-purple-700 rounded-xl">
+        <div>
+          <h2 className="text-xl font-semibold text-yellow-400">🎥 Cara Tampil Produk</h2>
+          <p className="text-xs text-zinc-500 mt-1">Pilih bagaimana produk ditampilkan dalam video — ini mempengaruhi deskripsi visual Sora</p>
+        </div>
+        <div className="grid grid-cols-1 gap-2">
+          {productDisplayOptions.map(opt => (
+            <button
+              key={opt.id}
+              onClick={() => setProductDisplayType(opt.id)}
+              className={`flex items-start gap-3 text-left px-4 py-3 rounded-lg border transition-all ${
+                productDisplayType === opt.id
+                  ? 'bg-purple-700/50 border-purple-400 text-white'
+                  : 'bg-gray-900/40 border-gray-700 text-zinc-400 hover:border-purple-600 hover:text-zinc-200'
+              }`}
+            >
+              <span className={`mt-0.5 w-3.5 h-3.5 flex-shrink-0 rounded-full border-2 transition-all ${
+                productDisplayType === opt.id ? 'border-yellow-400 bg-yellow-400' : 'border-gray-500'
+              }`} />
+              <span className="flex flex-col gap-0.5">
+                <span className="text-sm font-semibold leading-tight">
+                  {opt.emoji} {opt.label}
+                </span>
+                <span className="text-xs text-zinc-500 leading-snug">{opt.description}</span>
+              </span>
+            </button>
+          ))}
         </div>
       </div>
 
@@ -280,6 +340,18 @@ export default function SkripJualanForm({ onGenerate, isLoading }: Props) {
               transition={{ duration: 0.2 }}
               className="flex flex-col gap-5 pt-4 border-t border-purple-800"
             >
+              {/* Info cara tampil produk yang dipilih */}
+              <div className="bg-purple-900/20 border border-purple-700/40 rounded-lg px-3 py-2.5">
+                <p className="text-xs text-zinc-500">Cara tampil produk di Sora:</p>
+                <p className="text-sm font-semibold text-purple-300 mt-0.5">
+                  {productDisplayOptions.find(o => o.id === productDisplayType)?.emoji}{' '}
+                  {productDisplayOptions.find(o => o.id === productDisplayType)?.label}
+                </p>
+                <p className="text-xs text-zinc-600 mt-0.5 italic">
+                  Ubah di bagian "Cara Tampil Produk" di atas
+                </p>
+              </div>
+
               <div className="flex flex-col gap-2">
                 <label className="text-xs font-semibold text-zinc-400">Karakter (kosongkan = faceless)</label>
                 <input
