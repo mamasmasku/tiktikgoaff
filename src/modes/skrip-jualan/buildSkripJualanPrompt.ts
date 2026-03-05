@@ -2,7 +2,7 @@ import { HOOKS } from './banks/hookBank';
 import { STORYTELLING_RUMUS } from './banks/storytellingBank';
 import { buildLaranganPrompt } from './banks/laranganBank';
 import { CTA_CATEGORIES } from './banks/ctaBank';
-import { SkripJualanConfig } from './types';
+import { SkripJualanConfig, ProductDisplayType } from './types';
 
 // ── Shared Sora utilities (mirrors App.tsx logic) ──────────────────────────
 const INDONESIAN_CONTEXT_RULE = `**ATURAN KONTEKS VISUAL INDONESIA — WAJIB DI SEMUA ADEGAN:**
@@ -69,9 +69,71 @@ Adegan ${offScreenNums.join(', ')} WAJIB Dialog: "" (tanda kutip kosong — JANG
 Total dialog per segmen: ≤ ${maxWords} kata.`;
 };
 
+// ── Product display type helpers ──────────────────────────────────────────
+const getProductDisplayHeader = (
+  displayType: ProductDisplayType,
+  character: string,
+  segmentDuration: string
+): string => {
+  const char = character || 'faceless';
+  const descriptions: Record<ProductDisplayType, string> = {
+    'dipegang': `${char} memegang produk dengan kedua tangan ke arah kamera, memperlihatkan kemasan dan tampilan produk secara jelas`,
+    'dikenakan': `${char} mengenakan/memakai produk langsung di badan, memperlihatkan tampilan dari berbagai sudut dengan penuh percaya diri`,
+    'digunakan': `${char} sedang menggunakan/mempraktikkan produk secara langsung, memperlihatkan cara kerja dan hasil nyata produk`,
+    'ditunjuk': `${char} menunjuk dan memperlihatkan produk yang terdisplay, sesekali mendekatkan kamera ke produk untuk detail lebih jelas`,
+  };
+  return `Buatkan video realistic ${descriptions[displayType]}, Durasi ${segmentDuration} detik, MULTI SCENE, NO TEXT, NO MUSIC, CLEAR SUBJECT LOCK, ANTI BLUR VIDEO. Tiap adegan ~2 detik. Ultra HD 4K.`;
+};
+
+const getProductVisualRule = (displayType: ProductDisplayType): string => {
+  const rules: Record<ProductDisplayType, string> = {
+    'dipegang': `
+ATURAN VISUAL — PRODUK DIPEGANG:
+- Adegan on-screen: karakter memegang produk dengan kedua tangan ke arah kamera, ekspresi antusias dan natural
+  Shot: medium shot karakter + produk terlihat jelas di tangan, latar belakang tidak terlalu ramai
+- Adegan off-screen (VO): fokus ke produk tanpa karakter
+  Prioritaskan: close-up kemasan/label produk dari berbagai sudut, detail tekstur/warna produk,
+  medium shot produk di atas permukaan bersih, close-up fitur unik produk`,
+
+    'dikenakan': `
+ATURAN VISUAL — PRODUK DIKENAKAN/DIPAKAI:
+- Adegan on-screen: karakter memperlihatkan produk yang sedang dikenakan, full body atau medium shot
+  Shot: full body shot tampilan keseluruhan, medium shot bagian produk yang dikenakan, karakter berputar/bergerak natural
+- Adegan off-screen (VO): fokus ke detail produk tanpa karakter
+  Prioritaskan: close-up tekstur/material produk, detail jahitan/aksesoris/finishing,
+  medium shot produk terlipat/tergantung dengan rapi, wide shot tampilan produk dari kejauhan`,
+
+    'digunakan': `
+ATURAN VISUAL — PRODUK SEDANG DIGUNAKAN:
+- Adegan on-screen: karakter sedang mempraktikkan/menggunakan produk secara aktif
+  Shot: medium shot karakter + produk dalam aksi, ekspresi menunjukkan hasil/manfaat produk
+- Adegan off-screen (VO): fokus ke proses dan hasil penggunaan produk
+  Prioritaskan: close-up proses penggunaan produk (tangan/area terkait), detail hasil setelah digunakan,
+  medium shot produk dalam kondisi digunakan, close-up fitur yang sedang aktif bekerja`,
+
+    'ditunjuk': `
+ATURAN VISUAL — PRODUK DITUNJUK/DIPAMERKAN:
+- Adegan on-screen: karakter menunjuk produk sambil menjelaskan, gestur tangan ke arah produk
+  Shot: medium shot karakter + produk di frame yang sama, karakter sesekali menyentuh/mengarahkan ke produk
+- Adegan off-screen (VO): fokus ke display produk tanpa karakter
+  Prioritaskan: wide shot display produk lengkap dari depan, medium shot detail bagian produk,
+  close-up label/harga/fitur penting, berbagai sudut pandang produk yang terdisplay`,
+  };
+  return rules[displayType];
+};
+
 // ── Build the FULL system prompt ──────────────────────────────────────────
 export const buildSkripJualanSystemPrompt = (config: SkripJualanConfig): string => {
-  const { selectedRumus, selectedCTACategory, soraEnabled, soraCharacter, soraSegmentDuration, soraCharacterAppearance, soraDialogStrategy } = config;
+  const {
+    selectedRumus,
+    selectedCTACategory,
+    soraEnabled,
+    soraCharacter,
+    soraSegmentDuration,
+    soraCharacterAppearance,
+    soraDialogStrategy,
+    productDisplayType,
+  } = config;
 
   // Hook bank string
   const hookBankStr = HOOKS.map(h => `${h.id}. ${h.template}`).join('\n');
@@ -99,7 +161,8 @@ export const buildSkripJualanSystemPrompt = (config: SkripJualanConfig): string 
 
   // Sora instruction (optional)
   const totalSoraScenes = soraSegmentDuration === '10' ? 5 : 7;
-  const maxWords = soraSegmentDuration === '10' ? 25 : 37;
+  const maxWords = soraSegmentDuration === '10' ? 28 : 40;
+
   const soraInstruction = soraEnabled ? `
 
 ===INSTRUKSI SORA (WAJIB JIKA TOGGLE AKTIF)===
@@ -107,7 +170,7 @@ export const buildSkripJualanSystemPrompt = (config: SkripJualanConfig): string 
 Setelah membuat skrip lengkap, urai skrip tersebut menjadi prompt video Sora. Bertindaklah sebagai sutradara:
 1. Hitung jumlah segmen berdasarkan durasi skrip ÷ ${soraSegmentDuration} detik per segmen
 2. Bagi dialog dari skrip ke adegan (~2 detik per adegan, ${totalSoraScenes} adegan per segmen)
-3. Rancang visual sinematik per adegan
+3. Rancang visual sinematik per adegan sesuai tipe tampilan produk di bawah
 4. Ikuti aturan karakter dan dialog Sora di bawah
 
 Karakter Sora: ${soraCharacter || 'faceless'}
@@ -116,25 +179,32 @@ ${buildCharacterRule(soraCharacterAppearance, totalSoraScenes)}
 
 ${buildDialogRule(soraDialogStrategy, soraCharacterAppearance, soraSegmentDuration, maxWords, totalSoraScenes)}
 
+${getProductVisualRule(productDisplayType)}
+
 ${INDONESIAN_CONTEXT_RULE}
 
+KOMPOSISI SHOT — ATURAN KETAT:
+- DOMINASI wide shot dan medium shot — minimal ${totalSoraScenes === 5 ? '4' : '5'} dari ${totalSoraScenes} adegan harus wide atau medium
+- Close-up MAKSIMAL 1 kali per segmen, hanya untuk detail paling impactful
+- DILARANG close-up yang memotong konteks dari frame
+- DILARANG adegan off-screen diisi deskripsi karakter dalam bentuk apapun
 
 FORMAT SORA:
 ▶ SEGMEN [N] (${soraSegmentDuration} detik)
-Buatkan video realistic ${soraCharacter || 'faceless'} memegang/mereview produk, Durasi ${soraSegmentDuration} detik, MULTI SCENE, NO TEXT, NO MUSIC, CLEAR SUBJECT LOCK, ANTI BLUR VIDEO. Tiap adegan ~2 detik. Ultra HD 4K.
+${getProductDisplayHeader(productDisplayType, soraCharacter, soraSegmentDuration)}
 
 [deskripsi visual langsung tanpa label], Dialog: "dialog 1"
 [deskripsi visual langsung tanpa label], Dialog: "dialog 2"
-[lanjutkan untuk semua adegan]
-
-ATURAN PENULISAN ADEGAN — WAJIB:
-- DILARANG menulis "Deskripsi visual adegan 1:", "Adegan 1:", atau label apapun sebelum deskripsi
-- Langsung tulis deskripsi visual, contoh: "Medium shot karakter tersenyum memegang produk ke arah kamera, Dialog: "kalimat dialog""
-- Setiap baris adegan harus dimulai langsung dengan deskripsi sinematik
+[lanjutkan untuk semua ${totalSoraScenes} adegan]
 
 --
 
-[segmen berikutnya]
+[segmen berikutnya jika ada]
+
+ATURAN PENULISAN ADEGAN — WAJIB:
+- DILARANG menulis "Deskripsi visual adegan 1:", "Adegan 1:", atau label apapun sebelum deskripsi
+- Langsung tulis deskripsi visual sinematik, contoh: "Medium shot karakter memegang produk ke kamera dengan ekspresi antusias, Dialog: "kalimat dialog""
+- Setiap baris adegan harus dimulai langsung dengan deskripsi sinematik tanpa label apapun
 ` : '';
 
   return `Kamu adalah AI Copywriter & Scriptwriter TikTok dalam Bahasa Indonesia. Tugasmu adalah membuat skrip konten jualan/promosi produk yang natural, engaging, dan AMAN sesuai panduan platform.
@@ -182,6 +252,7 @@ Struktur (Hook → Story → Produk → Bukti → CTA) adalah PANDUAN ALUR, buka
 Hasilnya adalah narasi mulus seperti orang bicara di TikTok — tidak ada judul section, tidak ada pemisah.
 
 PANDUAN PANJANG SKRIP BERDASARKAN DURASI:
+- 10 detik = ±25 kata
 - 15 detik = ±40 kata
 - 20 detik = ±55 kata
 - 30 detik = ±80 kata
@@ -223,7 +294,7 @@ ${soraInstruction}`;
 };
 
 export const buildSkripJualanUserPrompt = (config: SkripJualanConfig): string => {
-  const { namaProduk, durasiSkrip, tone, jumlahSkrip, manualHook, selectedRumus } = config;
+  const { namaProduk, durasiSkrip, tone, jumlahSkrip, manualHook, selectedRumus, productDisplayType } = config;
 
   const rumusInfo = selectedRumus.length > 0
     ? `Rumus yang dipilih user: ${selectedRumus.join(', ')}`
@@ -233,12 +304,20 @@ export const buildSkripJualanUserPrompt = (config: SkripJualanConfig): string =>
     ? `Manual Hook (WAJIB DIGUNAKAN, JANGAN ambil dari bank): "${manualHook.trim()}"`
     : 'Hook: pilih secara acak dari bank hook, cantumkan nomor hook yang digunakan';
 
+  const displayTypeLabel: Record<string, string> = {
+    'dipegang': 'Dipegang ke kamera',
+    'dikenakan': 'Dikenakan/Dipakai langsung',
+    'digunakan': 'Sedang digunakan/dipraktikkan',
+    'ditunjuk': 'Ditunjuk/Dipamerkan',
+  };
+
   return `Buat ${jumlahSkrip} skrip konten TikTok untuk produk berikut:
 
 Nama & Deskripsi Produk: ${namaProduk}
 Durasi Skrip: ${durasiSkrip} detik
 Tone: ${tone}
 Jumlah Skrip: ${jumlahSkrip}
+Cara Tampil Produk: ${displayTypeLabel[productDisplayType] || 'Dipegang ke kamera'}
 
 ${hookInfo}
 ${rumusInfo}
@@ -248,5 +327,6 @@ Pastikan:
 - Setiap skrip menggunakan rumus yang BERBEDA (jika memungkinkan)
 - Semua kalimat mematuhi aturan larangan/kata aman
 - Caption dan 5 hashtag per skrip
+- Visual Sora disesuaikan dengan cara tampil produk: ${displayTypeLabel[productDisplayType] || 'Dipegang ke kamera'}
 - Format output PERSIS sesuai instruksi`;
 };
