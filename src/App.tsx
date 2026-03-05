@@ -629,7 +629,7 @@ Berdasarkan hasil riset dan GAYA KONTEN yang ditentukan, tulis SELURUH narasi da
 PANDUAN PANJANG SKRIP BERDASARKAN TOTAL DURASI:
 - 10 detik = ±32 kata
 - 15 detik = ±45 kata
-- 30 detik = ±90 kata  
+- 30 detik = ±80 kata  
 - 45 detik = ±135 kata
 - 60 detik = ±180 kata
 - 90 detik = ±260 kata
@@ -653,7 +653,13 @@ TAHAP 3 — BAGI SKRIP KE SEGMEN & ADEGAN (SEPERTI SUTRADARA)
 - DILARANG menggabungkan semua dialog ke 1 segmen meskipun skrip terasa menyatu
 - Potong skrip ke segmen di jeda natural (koma, titik, jeda napas) — JANGAN potong tengah kalimat
 - Setiap segmen harus berdiri sendiri sebagai video Sora yang terpisah
-- CEK WAJIB sebelum output: jumlah segmen = Total Durasi ÷ Durasi per Segmen — harus sama persis
+- CEK WAJIB FINAL sebelum output:
+  1. Hitung: Total Durasi ÷ Durasi per Segmen = jumlah segmen WAJIB
+     Contoh: 30 ÷ 15 = 2 → output WAJIB ada ▶ SEGMEN 1 DAN ▶ SEGMEN 2
+     Contoh: 45 ÷ 15 = 3 → output WAJIB ada ▶ SEGMEN 1, 2, DAN 3
+  2. Hitung berapa kali '▶ SEGMEN' muncul di output yang sudah ditulis
+  3. Jika jumlahnya KURANG → WAJIB tambahkan segmen yang kurang SEBELUM selesai
+  4. DILARANG output hanya 1 segmen jika Total Durasi > Durasi per Segmen
 
 TAHAP 4 — FORMAT OUTPUT
 LANGSUNG mulai output dengan ▶ SEGMEN 1 tanpa penjelasan, tanpa intro, tanpa komentar apapun.
