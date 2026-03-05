@@ -700,6 +700,13 @@ ${INDONESIAN_CONTEXT_RULE}
 - DILARANG penjelasan/komentar apapun sebelum atau sesudah output. Langsung mulai dengan '▶ SEGMEN 1'.
 - DILARANG menuliskan kata "Karakter" sebelum nama/handle karakter. Langsung tulis nama/handle-nya.
 - Jika membuat lebih dari 1 konten: SETIAP konten WAJIB menggunakan gaya berbeda sesuai distribusi. Hook dan struktur narasi HARUS berbeda antar konten.
+LARANGAN VISUAL PLATFORM LAIN — WAJIB:
+- DILARANG menampilkan layar HP yang menunjukkan aplikasi order (GoFood, GrabFood, Shopee Food, Tokopedia, Shopee, TikTok Shop, dll)
+- DILARANG menampilkan UI/interface aplikasi apapun di layar HP atau tablet
+- DILARANG menampilkan struk digital, notifikasi order, atau konfirmasi pembelian dari aplikasi lain
+- DILARANG visual tangan mengetuk/scroll layar HP yang menampilkan platform lain
+- Jika perlu menunjukkan "cara order", gunakan: tangan mengetuk udara, gestur menunjuk ke bawah, atau karakter berbicara langsung ke kamera — TANPA memperlihatkan layar HP
+- Jika perlu menunjukkan "harga lebih murah", gunakan: visual produk dengan label harga fisik, karakter memegang uang Rupiah, atau gestur jempol ke bawah (harga turun) — TANPA layar HP.
 
 - ATURAN VISUAL — WAJIB FOKUS KE OBJEK REVIEW:
   Mayoritas adegan (minimal ${totalScenes === 5 ? '4' : '5'} dari ${totalScenes} adegan per segmen) HARUS menampilkan visual objek review, bukan karakter.
@@ -816,6 +823,13 @@ ${INDONESIAN_CONTEXT_RULE}
 - Medium shot juga harus memperlihatkan konteks tempat —
   contoh: "medium shot ayam geprek di piring dengan meja kayu dan dekorasi warung terlihat di sekitarnya"
 - DILARANG close-up yang memotong konteks tempat/suasana dari frame.
+LARANGAN VISUAL PLATFORM LAIN — WAJIB:
+- DILARANG menampilkan layar HP yang menunjukkan aplikasi order (GoFood, GrabFood, Shopee Food, Tokopedia, Shopee, TikTok Shop, dll)
+- DILARANG menampilkan UI/interface aplikasi apapun di layar HP atau tablet
+- DILARANG menampilkan struk digital, notifikasi order, atau konfirmasi pembelian dari aplikasi lain
+- DILARANG visual tangan mengetuk/scroll layar HP yang menampilkan platform lain
+- Jika perlu menunjukkan "cara order", gunakan: tangan mengetuk udara, gestur menunjuk ke bawah, atau karakter berbicara langsung ke kamera — TANPA memperlihatkan layar HP
+- Jika perlu menunjukkan "harga lebih murah", gunakan: visual produk dengan label harga fisik, karakter memegang uang Rupiah, atau gestur jempol ke bawah (harga turun) — TANPA layar HP.
 
 UNTUK REVIEW MAKANAN/MINUMAN:
 Visual off-screen prioritaskan: wide shot suasana outlet dengan meja dan pengunjung, medium shot
