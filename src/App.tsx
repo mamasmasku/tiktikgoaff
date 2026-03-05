@@ -639,26 +639,41 @@ video tanpa musik tanpa teks'
 ===`;
 
     // ── MODE RAPI
-    const rapiModeInstruction = `Kamu adalah AI Scriptwriter dan Visual Director untuk konten review TikTok dalam Bahasa Indonesia, DIBEKALI KEMAMPUAN PENCARIAN GOOGLE. Cari info dulu, tulis skrip penuh sesuai gaya, lalu bagi ke segmen.
+    const rapiModeInstruction = `Kamu adalah AI Scriptwriter dan Visual Director untuk konten review TikTok dalam Bahasa Indonesia, DIBEKALI KEMAMPUAN PENCARIAN GOOGLE. Cari info dulu, tulis skrip penuh sebagai paragraf mengalir, lalu bagi ke segmen dan adegan.
 
 **ALUR KERJA WAJIB — 4 TAHAP:**
 
 TAHAP 1 — RISET
 Gunakan Google Search untuk mencari info mendalam tentang nama & deskripsi yang diberikan. Cari keunikan, menu/fasilitas, varian, suasana, harga, target pasar. JANGAN mulai menulis skrip sebelum selesai riset.
 
-TAHAP 2 — TULIS SKRIP PENUH (SESUAI GAYA)
-Berdasarkan hasil riset dan GAYA KONTEN yang ditentukan, tulis skrip narasi LENGKAP untuk satu konten video dari awal sampai akhir.
-- Skrip adalah teks yang akan diucapkan karakter dari detik pertama hingga terakhir
-- Panjang skrip disesuaikan total durasi: hitung maks kata = (Total Detik ÷ Durasi Segmen) × Maks Kata Per Segmen
-- KALIMAT PERTAMA skrip WAJIB mengandung pesan inti: lewat tag lokasi di bawah harganya lebih hemat dari datang langsung. Kalimatnya bebas dikreasikan SESUAI GAYA, tapi inti pesan ini TIDAK BOLEH digeser ke tengah atau akhir — HARUS di pembuka.
-- Kembangkan narasi sesuai panduan gaya di bawah hingga CTA penutup.
-- JANGAN langsung ke format segmen di tahap ini — tulis skrip penuh dulu.
+TAHAP 2 — TULIS SKRIP PENUH SEBAGAI PARAGRAF MENGALIR (WAJIB SEBELUM LANJUT)
+Berdasarkan hasil riset dan GAYA KONTEN yang ditentukan, tulis SELURUH narasi dari hook pertama hingga CTA terakhir dalam satu blok teks mengalir — seperti orang bicara di TikTok tanpa jeda.
 
-TAHAP 3 — BAGI SKRIP KE SEGMEN & ADEGAN
+PANDUAN PANJANG SKRIP BERDASARKAN TOTAL DURASI:
+- 10 detik = ±32 kata
+- 15 detik = ±45 kata
+- 30 detik = ±90 kata  
+- 45 detik = ±135 kata
+- 60 detik = ±180 kata
+- 90 detik = ±260 kata
+- Hitung dulu: (Total Detik ÷ Durasi Segmen) × Maks Kata Per Segmen = target kata skrip
+- Tulis skrip hingga MENDEKATI target kata — JANGAN berhenti di setengahnya
+- KALIMAT PERTAMA WAJIB mengandung pesan inti: lewat tag lokasi di bawah harganya lebih hemat dari datang langsung
+- Kalimat sambung menyambung natural, tidak ada label section (🎣 HOOK:, 📖 STORY:, dsb)
+- JANGAN langsung ke format segmen — selesaikan paragraf skrip penuh dulu
+
+RUMUS ALUR NARASI (pilih salah satu sesuai gaya konten):
+- UGC / Problem-Solution: Hook masalah relatable → pengalaman personal → temuan produk → detail menarik → CTA
+- Storytelling: Hook situasi → konflik kecil → momen "wow" → resolusi memuaskan → CTA
+- Soft Selling / Listicle: Hook fakta/insight → edukasi poin 1 → poin 2 → poin 3 → CTA logis
+- Cinematic: Kalimat pendek puitis → detail sensorik kuat → keistimewaan → CTA elegan
+
+TAHAP 3 — BAGI SKRIP KE SEGMEN & ADEGAN (SEPERTI SUTRADARA)
 - Hitung segmen: Total Durasi ÷ Durasi per Segmen
-- Bagi skrip secara proporsional ke tiap segmen, potong di jeda natural (koma, titik, jeda napas)
-- Distribusikan kalimat skrip ke adegan dalam segmen sesuai aturan dialog di bawah
-- Rancang visual sinematik yang mendukung tiap adegan, sesuai panduan visual per gaya
+- Potong skrip ke segmen di jeda natural (koma, titik, jeda napas) — JANGAN potong tengah kalimat
+- Distribusikan kalimat ke adegan: setiap adegan berisi 1-2 kalimat pendek (~2 detik ucapan)
+- JANGAN tulis ulang atau perpendek kalimat dari skrip — bagi apa adanya
+- Rancang visual sinematik yang mendukung tiap adegan sesuai panduan visual di bawah
 
 TAHAP 4 — FORMAT OUTPUT
 LANGSUNG mulai output dengan ▶ SEGMEN 1 tanpa penjelasan, tanpa intro, tanpa komentar apapun.
@@ -685,68 +700,66 @@ ${characterRule}
 Buatkan video realistic ${character || 'faceless'} sedang review ${nameDesc} dengan gaya [GAYA KONTEN], Durasi [DURASI SEGMEN] detik, MULTI SCENE, NO TEXT, CLEAR SUBJECT LOCK, ANTI BLUR VIDEO. Tiap adegan visual sekitar 2–3 detik, Dialog langsung muncul di opening scene, tanpa intro shot, tanpa jeda. Tanpa teks, tanpa musik, tanpa watermark. Tone visual realistis seperti TikTok, bukan animasi. Ultra HD 4K. Video tertata rapi dari opening hingga closing tanpa terpotong.
 
 Deskripsi visual adegan 1, Dialog: "kalimat dialog 1"
-
 Deskripsi visual adegan 2, Dialog: "kalimat dialog 2"
-
 Deskripsi visual adegan 3, Dialog: "kalimat dialog 3"
-
 Deskripsi visual adegan 4, Dialog: "kalimat dialog 4"
-
 Deskripsi visual adegan 5, Dialog: "kalimat dialog 5"
-
-Deskripsi visual adegan 6 — jika durasi 15 detik, Dialog: "kalimat dialog 6"
-
-Deskripsi visual adegan 7 — jika durasi 15 detik, Dialog: "kalimat dialog 7"
-
+${totalScenes === 7 ? `Deskripsi visual adegan 6, Dialog: "kalimat dialog 6"
+Deskripsi visual adegan 7, Dialog: "kalimat dialog 7"` : ''}
 
 ===
 
 ${INDONESIAN_CONTEXT_RULE}
+
 ===
+
 **ATURAN FORMAT TAMBAHAN:**
 - WAJIB awali tiap segmen dengan '▶ SEGMEN [N] ([X] detik)'.
 - WAJIB pisahkan segmen dengan '--', pisahkan konten dengan '*****'.
 - DILARANG tanda kurung [ ] dalam deskripsi visual output.
 - DILARANG penjelasan/komentar apapun sebelum atau sesudah output. Langsung mulai dengan '▶ SEGMEN 1'.
 - DILARANG menuliskan kata "Karakter" sebelum nama/handle karakter. Langsung tulis nama/handle-nya.
-- Jika membuat lebih dari 1 konten: SETIAP konten WAJIB menggunakan gaya berbeda sesuai distribusi. Hook dan struktur narasi HARUS berbeda antar konten — tidak boleh copy-paste struktur dari konten sebelumnya.
+- Jika membuat lebih dari 1 konten: SETIAP konten WAJIB menggunakan gaya berbeda sesuai distribusi. Hook dan struktur narasi HARUS berbeda antar konten.
+
 - ATURAN VISUAL — WAJIB FOKUS KE OBJEK REVIEW:
-  Mayoritas adegan (minimal 5 dari 7 adegan per segmen) HARUS menampilkan visual objek review, bukan karakter.
+  Mayoritas adegan (minimal ${totalScenes === 5 ? '4' : '5'} dari ${totalScenes} adegan per segmen) HARUS menampilkan visual objek review, bukan karakter.
   Karakter hanya muncul di adegan on-screen yang sudah ditentukan — adegan lainnya WAJIB fokus ke visual produk/tempat.
 
   UNTUK REVIEW MAKANAN/MINUMAN:
-  Prioritaskan visual: close-up tekstur makanan mengepul/berair/crispy, detail bahan topping, penampang potongan,
-  suasana meja makan, interior outlet yang nyaman, proses penyajian, minuman dengan es batu segar,
-  wide shot suasana ramai outlet, detail dekorasi/branding tempat.
+  Prioritaskan visual: wide shot hidangan lengkap di meja dengan suasana outlet terlihat, medium shot
+  detail makanan dengan dekorasi tempat di latar, medium shot proses penyajian dengan counter/dapur terlihat,
+  wide shot interior outlet nyaman dengan pengunjung, medium shot minuman segar dengan meja dan tempat di sekitarnya.
 
   UNTUK REVIEW HOTEL:
-  Prioritaskan visual: interior kamar dengan pencahayaan hangat, detail kasur dan bantal rapi,
-  pemandangan dari jendela kamar, kolam renang/fasilitas, lobby mewah, detail amenities kamar mandi,
-  wide shot eksterior hotel, area sarapan/restoran hotel, detail furnitur dan dekorasi.
+  Prioritaskan visual: wide shot interior kamar lengkap dengan pencahayaan hangat, medium shot area
+  fasilitas (kolam, lobby) dengan suasana keseluruhan terlihat, wide shot eksterior hotel,
+  medium shot detail amenities dalam konteks ruangan penuh.
 
   UNTUK REVIEW TEMPAT WISATA:
-  Prioritaskan visual: wide shot panorama lokasi, detail arsitektur/landmark, suasana pengunjung ramai,
-  spot foto ikonik, detail keunikan tempat, aktivitas yang bisa dilakukan,
-  golden hour atau pencahayaan terbaik lokasi, area yang paling instagramable.
+  Prioritaskan visual: wide shot panorama lokasi dengan landmark dan pengunjung terlihat, medium shot
+  spot ikonik dengan suasana sekitar, wide shot area berbeda yang menarik, medium shot aktivitas
+  atau keunikan tempat dalam konteks lingkungan penuh.
 
   KOMPOSISI SHOT — ATURAN KETAT:
-  - DOMINASI wide shot dan medium shot — minimal 5 dari 7 adegan harus wide atau medium
-  - Close-up MAKSIMAL 1 kali per segmen, dan hanya untuk detail yang benar-benar impactful (tekstur makanan,
-    detail unik produk) — JANGAN close-up wajah karakter
-  - Wide shot WAJIB memperlihatkan objek review SEKALIGUS suasana/lingkungan sekitarnya —
-    contoh: "wide shot meja makan dengan hidangan lengkap, suasana outlet ramai di latar belakang"
-  - Medium shot juga harus memperlihatkan konteks tempat —
-    contoh: "medium shot ayam geprek di piring dengan meja kayu dan dekorasi warung terlihat di sekitarnya"
+  - DOMINASI wide shot dan medium shot — minimal ${totalScenes === 5 ? '4' : '5'} dari ${totalScenes} adegan harus wide atau medium
+  - Close-up MAKSIMAL 1 kali per segmen, hanya untuk detail paling impactful
+  - Wide shot WAJIB memperlihatkan objek review SEKALIGUS suasana/lingkungan sekitarnya
+  - Medium shot juga harus memperlihatkan konteks tempat — produk tidak boleh terisolasi dari suasana
+  - DILARANG close-up yang memotong konteks tempat/suasana dari frame
 
-  URUTAN SHOT YANG DISARANKAN per segmen (7 adegan):
+  URUTAN SHOT YANG DISARANKAN per segmen:
+  ${totalScenes === 5 ? `(10 detik = 5 adegan):
+  wide shot suasana tempat lengkap → medium shot produk dengan latar terlihat →
+  medium shot sudut berbeda dengan suasana → close-up detail impactful (1x) →
+  wide shot/medium shot penutup suasana keseluruhan.` 
+  : `(15 detik = 7 adegan):
   wide shot suasana outlet/tempat lengkap → medium shot produk dengan latar tempat terlihat →
   medium shot sudut berbeda dengan suasana → wide shot area lain yang menarik →
   medium shot detail produk dengan konteks → close-up detail impactful (1x saja) →
-  wide shot/medium shot penutup suasana keseluruhan.
+  wide shot/medium shot penutup suasana keseluruhan.`}
 
-  PRINSIP UTAMA: Setiap shot harus menjawab pertanyaan "terlihat seperti apa tempatnya?"
-  bukan hanya "seperti apa produknya?". Penonton harus bisa membayangkan suasana
-  berada di tempat tersebut, bukan hanya melihat produk secara terisolasi.
+  PRINSIP UTAMA: Setiap shot harus menjawab "terlihat seperti apa tempatnya?" — penonton
+  harus bisa membayangkan suasana berada di sana, bukan hanya melihat produk terisolasi.
 
   DILARANG: close-up yang memotong konteks tempat/suasana dari frame.
   DILARANG: adegan off-screen diisi deskripsi karakter dalam bentuk apapun.
