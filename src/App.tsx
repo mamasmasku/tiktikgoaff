@@ -710,7 +710,48 @@ ${INDONESIAN_CONTEXT_RULE}
 - DILARANG penjelasan/komentar apapun sebelum atau sesudah output. Langsung mulai dengan '▶ SEGMEN 1'.
 - DILARANG menuliskan kata "Karakter" sebelum nama/handle karakter. Langsung tulis nama/handle-nya.
 - Jika membuat lebih dari 1 konten: SETIAP konten WAJIB menggunakan gaya berbeda sesuai distribusi. Hook dan struktur narasi HARUS berbeda antar konten — tidak boleh copy-paste struktur dari konten sebelumnya.
-- ATURAN VISUAL: Komposisi shot didominasi wide shot dan medium shot. Close-up produk MAKSIMAL 1 kali per segmen. Urutan yang disarankan: wide → medium → medium → close-up produk (1x) → medium → wide → medium. DILARANG close-up produk lebih dari 1 adegan dalam 1 segmen yang sama.
+- // ✅ VERSI LENGKAP — tempel ini menggantikan baris ATURAN VISUAL yang lama
+- ATURAN VISUAL — WAJIB FOKUS KE OBJEK REVIEW:
+  Mayoritas adegan (minimal 5 dari 7 adegan per segmen) HARUS menampilkan visual objek review, bukan karakter.
+  Karakter hanya muncul di adegan on-screen yang sudah ditentukan — adegan lainnya WAJIB fokus ke visual produk/tempat.
+
+  UNTUK REVIEW MAKANAN/MINUMAN:
+  Prioritaskan visual: close-up tekstur makanan mengepul/berair/crispy, detail bahan topping, penampang potongan,
+  suasana meja makan, interior outlet yang nyaman, proses penyajian, minuman dengan es batu segar,
+  wide shot suasana ramai outlet, detail dekorasi/branding tempat.
+
+  UNTUK REVIEW HOTEL:
+  Prioritaskan visual: interior kamar dengan pencahayaan hangat, detail kasur dan bantal rapi,
+  pemandangan dari jendela kamar, kolam renang/fasilitas, lobby mewah, detail amenities kamar mandi,
+  wide shot eksterior hotel, area sarapan/restoran hotel, detail furnitur dan dekorasi.
+
+  UNTUK REVIEW TEMPAT WISATA:
+  Prioritaskan visual: wide shot panorama lokasi, detail arsitektur/landmark, suasana pengunjung ramai,
+  spot foto ikonik, detail keunikan tempat, aktivitas yang bisa dilakukan,
+  golden hour atau pencahayaan terbaik lokasi, area yang paling instagramable.
+
+  KOMPOSISI SHOT — ATURAN KETAT:
+  - DOMINASI wide shot dan medium shot — minimal 5 dari 7 adegan harus wide atau medium
+  - Close-up MAKSIMAL 1 kali per segmen, dan hanya untuk detail yang benar-benar impactful (tekstur makanan,
+    detail unik produk) — JANGAN close-up wajah karakter
+  - Wide shot WAJIB memperlihatkan objek review SEKALIGUS suasana/lingkungan sekitarnya —
+    contoh: "wide shot meja makan dengan hidangan lengkap, suasana outlet ramai di latar belakang"
+  - Medium shot juga harus memperlihatkan konteks tempat —
+    contoh: "medium shot ayam geprek di piring dengan meja kayu dan dekorasi warung terlihat di sekitarnya"
+
+  URUTAN SHOT YANG DISARANKAN per segmen (7 adegan):
+  wide shot suasana outlet/tempat lengkap → medium shot produk dengan latar tempat terlihat →
+  medium shot sudut berbeda dengan suasana → wide shot area lain yang menarik →
+  medium shot detail produk dengan konteks → close-up detail impactful (1x saja) →
+  wide shot/medium shot penutup suasana keseluruhan.
+
+  PRINSIP UTAMA: Setiap shot harus menjawab pertanyaan "terlihat seperti apa tempatnya?"
+  bukan hanya "seperti apa produknya?". Penonton harus bisa membayangkan suasana
+  berada di tempat tersebut, bukan hanya melihat produk secara terisolasi.
+
+  DILARANG: close-up yang memotong konteks tempat/suasana dari frame.
+  DILARANG: adegan off-screen diisi deskripsi karakter dalam bentuk apapun.
+  DILARANG: mendominasi segmen dengan shot karakter lebih dari 2 adegan per segmen.
 `;
 
     // ── MODE URAI
