@@ -524,7 +524,7 @@ Jelaskan bahwa [PRODUK/TEMPAT] ini cocok untuk [MANFAAT/USE-CASE HASIL RISET].
 
 Buat tampilan video yang hidup, menarik, real dan realistis seperti konten TikTok Go. Videonya berkualitas ultra HD 4K keren. Video tertata rapi dari opening, review rasa, penjelasan harga dan varian, sampai closing tanpa terpotong.
 
-video tanpa musik tanpa teks'
+video tanpa musik tanpa teks, tanpa menampilkan layar HP, tanpa UI aplikasi order apapun, tanpa struk digital atau notifikasi pembelian dari platform lain'
 
 **ATURAN HOOK (SANGAT PENTING):**
 -   **UNTUK SEGMEN 1:** Hook HARUS dipilih atau dikreasikan dari "BANK HOOK SEGMEN 1". Pesan utamanya adalah tentang mendapatkan harga lebih terjangkau melalui tag lokasi di banding datang langsung.
