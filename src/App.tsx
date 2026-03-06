@@ -894,6 +894,8 @@ Nama & Deskripsi Singkat: ${nameDesc}
 Karakter: ${character || 'faceless'}
 Durasi per Segmen: ${segmentDuration} detik
 Total Durasi: ${totalDuration} detik
+JUMLAH SEGMEN WAJIB PER KONTEN: ${Math.round(parseInt(totalDuration) / parseInt(segmentDuration))} segmen (${totalDuration} ÷ ${segmentDuration} = ${Math.round(parseInt(totalDuration) / parseInt(segmentDuration))})
+WAJIB output ${Math.round(parseInt(totalDuration) / parseInt(segmentDuration))} blok ▶ SEGMEN yang terpisah per konten. DILARANG menggabungkan ke 1 segmen.
 
 Gaya Konten per video (WAJIB DIIKUTI — setiap konten harus mengikuti panduan gaya yang tertera):
 ${stylePerContent}
