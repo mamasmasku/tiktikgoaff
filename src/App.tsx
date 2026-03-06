@@ -627,10 +627,10 @@ TAHAP 2 — TULIS SKRIP PENUH SEBAGAI PARAGRAF MENGALIR (WAJIB SEBELUM LANJUT)
 Berdasarkan hasil riset dan GAYA KONTEN yang ditentukan, tulis SELURUH narasi dari hook pertama hingga CTA terakhir dalam satu blok teks mengalir — seperti orang bicara di TikTok tanpa jeda.
 
 PANDUAN PANJANG SKRIP BERDASARKAN TOTAL DURASI:
-- 10 detik = ±32 kata
-- 15 detik = ±45 kata
+- 10 detik = ±28 kata
+- 15 detik = ±40 kata
 - 30 detik = ±80 kata  
-- 45 detik = ±135 kata
+- 45 detik = ±120 kata
 - 60 detik = ±180 kata
 - 90 detik = ±260 kata
 - Hitung dulu: (Total Detik ÷ Durasi Segmen) × Maks Kata Per Segmen = target kata skrip
